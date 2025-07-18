@@ -205,6 +205,22 @@ malfunction. If we notice or get told it is excessively loud, please
 check the temperatures as above and notify someone if you notice
 anything concerning.
 
+## Adding new users (Admins)
+
+To add a new user you have to create a profile name and a secure password. Generally, we allow users to create their own password, but check this is secure enough before accepting. 
+
+The process for adding users is simple, but correct user profile configuration requires the adding of the user to user groups. User groups can be seen by running ```groups <existing user>```. All users should have access to their own ```user``` group (this is made automatically with their profile creation) and the ```software``` group. Adept users can also be given sudo permissions with the ```sudo``` group. This is all done as follows:
+
+```bash
+sudo adduser <user name>   # This will prompt password entry, skip all the rest entries
+
+sudo usermod -aG software <user name>  # Add the user to the software group
+
+# sudo usermod -aG sudo <user name>  # Add the user to the sudo group - use cautiously
+
+sudo gpasswd --delete <user name> users  # Remove the user from the global users group
+```
+
 ## Assistance
 
 If you would like assistance with using Harvey, whether this is for

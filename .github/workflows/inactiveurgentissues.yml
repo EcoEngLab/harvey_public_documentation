@@ -45,7 +45,7 @@ jobs:
             // We use UTC so it's consistent across servers
             const utc = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
             // Move 7 days backwards
-            utc.setUTCDate(utc.getUTCDate() - 1);
+            utc.setUTCDate(utc.getUTCDate() - 7);
             // Format date to YYYY-MM-DD (GitHub search requires this)
             const pad = n => String(n).padStart(2, '0');
             const cutoff = `${utc.getUTCFullYear()}-${pad(utc.getUTCMonth() + 1)}-${pad(utc.getUTCDate())}`;

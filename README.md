@@ -32,7 +32,7 @@ You must be given permission to use Harvey. If you would like access
 please contact George Kalogiannis (<g.kalogiannis23@imperial.ac.uk>) or
 Prof. Samraat Pawar (<s.pawar@imperial.ac.uk>).
 
-Each user is provided with a unique login to Harvey. The permissions you
+The permissions you
 have once logging in will depend on your seniority and needs; for
 example, undergraduate and master’s students running parallelised
 simulations will not be granted sudo privileges unless necessary for
@@ -44,7 +44,8 @@ services](https://www.imperial.ac.uk/admin-services/ict/self-service/connect-com
 In a terminal window run:
 
 ``` bash
-ssh <username>@harvey.dept.imperial.ac.uk
+ssh <imperial_username>@harvey.dept.imperial.ac.uk
+#password is your imperial email password
 ```
 
 Similarly, you can transfer files to and from your computer to Harvey
@@ -55,6 +56,12 @@ cd /directory with-or-without files/ # change to the directory you want to files
 sftp <username>@harvey.dept.imperial.ac.uk # log in
 get /directory/files # get files from harvey into a local directory
 put /directory/files # put files from local into a harvey directory
+```
+
+*for former users of the Harvey pre 01/03/2026, you may have difficulties logging in due. In order to rectify. run the following command, then attempt logging in again*
+
+```bash
+ssh-keygen -R 'harvey.dept.imperial.ac.uk'
 ```
 
 ## Anaconda and Software

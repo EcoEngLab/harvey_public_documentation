@@ -207,18 +207,30 @@ anything concerning.
 
 ## Adding new users (Admins)
 
-To add a new user you have to create a profile name and a secure password. Generally, we allow users to create their own password, but check this is secure enough before accepting. 
+User authentication on Harvey is handled through Imperial College accounts, so local Linux users do not need to be created manually. Access is instead controlled through Linux groups. 
 
-The process for adding users is simple, but correct user profile configuration requires the adding of the user to user groups. User groups can be seen by running ```groups <existing user>```. All users should have access to their own ```user``` group (this is made automatically with their profile creation) and the ```software``` group. Adept users can also be given sudo permissions with the ```sudo``` group. This is all done as follows:
+The process for adding users is simple, but correct user profile configuration requires the adding of the user to user groups. User groups can be seen by running ```groups <existing user>```. All users should have access to their own ```user``` group (this is made automatically with their profile creation) and the ```software``` group. Adept and trusted users can also be given sudo permissions with the ```sudo``` group. This is all done as follows:
+
+```bash 
+sudo usermod -aG sshd <imperial_username>
+
+sudo usermod -aG software <imperial_username>  # Add the user to the software group to allow access to shared software environments:
+
+#sudo usermod -aG sudo <imperial_username>  # Add the user to the sudo group - use cautiously
+```
+To remove a user, use: 
 
 ```bash
-sudo adduser <user name>   # This will prompt password entry, skip all the rest entries
+sudo gpasswd -d <imperial_username> sshd #THEN do
+sudo rm -r /home/<imperial_username>
 
-sudo usermod -aG software <user name>  # Add the user to the software group
+# sudo gpasswd -d <imperial_username> sudo # If the user was granted sudo privilages
+```
+To check what privilages users have, use: 
 
-# sudo usermod -aG sudo <user name>  # Add the user to the sudo group - use cautiously
-
-sudo gpasswd --delete <user name> users  # Remove the user from the global users group
+```bash
+getent group sshd
+getent group sudo
 ```
 
 ## Assistance
